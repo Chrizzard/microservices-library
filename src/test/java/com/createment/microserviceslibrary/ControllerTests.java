@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,6 +35,21 @@ public class ControllerTests {
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[6]").exists())
-                .andExpect(jsonPath("$[6].title").value("Van Peuter tot Kleuter"));
+                .andExpect(jsonPath("$[6].title").value("Van Peuter tot Kleuter"))
+                .andExpect(jsonPath("$[7]").doesNotExist());
+    }
+
+    @Test
+    void testFindBookById() throws Exception {
+        mockMvc.perform(get("/books/3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$.title").value("Harry Potter 3"));
+    }
+
+    @Test
+    void testAddBook() throws Exception {
+        mockMvc.perform(post("/books"))
+                .andExpect(status().isCreated());
     }
 }

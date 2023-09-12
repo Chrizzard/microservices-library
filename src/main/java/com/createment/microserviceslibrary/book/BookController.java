@@ -30,8 +30,8 @@ public class BookController {
         return bookrepository.findById(bookId);
     }
 
-    @PutMapping("/lending/{bookId}/{customer}")
-    public void lendBookById(@PathVariable Long bookId, @PathVariable Customer customer) {
+    @PutMapping("/lending/{bookId}/")
+    public void lendBookById(@PathVariable Long bookId, @RequestBody Customer customer) {
         bookservice.lendBook(bookId, customer);
     }
 }

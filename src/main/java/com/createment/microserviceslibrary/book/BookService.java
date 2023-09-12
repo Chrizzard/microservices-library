@@ -25,7 +25,8 @@ public class BookService {
             if (findCustomer(customer) == null) {
                 savedCustomer = saveCustomer(customer);
             }
-            updateBookLended(bookId, savedCustomer);
+            Book savedBook = updateBookLended(bookId, savedCustomer);
+            System.out.println(savedBook);
         }
     }
 
@@ -67,6 +68,7 @@ public class BookService {
         book.setBookStatus(BookStatus.LENDED);
         book.setCustomer_id(savedCustomer.getId());
         book.setReturn_date(LocalDate.now().plus(14, ChronoUnit.DAYS));
+        book = bookRepository.save(book);
         return book;
     }
 

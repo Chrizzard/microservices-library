@@ -15,10 +15,12 @@ import java.util.List;
 @Transactional
 public class BookService {
     private final BookRepository bookRepository;
+    private final WebClient webClient;
 
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, WebClient webClient) {
         this.bookRepository = bookRepository;
+        this.webClient = webClient;
     }
 
     public void lendBook(Long bookId, Customer customer) {
@@ -38,8 +40,6 @@ public class BookService {
     }
 
     public Customer findCustomer(Customer customer) {
-        WebClient webClient = WebClient.create("http://localhost:8081");
-
         List<Customer> customers = webClient.get()
                 .uri("/customers")
                 .retrieve()
@@ -53,8 +53,6 @@ public class BookService {
     }
 
     public Customer saveCustomer(Customer customer) {
-        WebClient webClient = WebClient.create("http://localhost:8081");
-
         Customer savedCustomer = webClient.post()
                 .uri("/customers")
                 .body(Mono.just(customer), Customer.class)

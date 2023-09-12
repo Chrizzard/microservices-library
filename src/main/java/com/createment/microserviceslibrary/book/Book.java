@@ -23,10 +23,4 @@ public class Book {
     private BookStatus bookStatus = BookStatus.AVAILABLE;
     private Long customer_id;
     private LocalDate return_date;
-
-    public Book(String title, String author) {
-        this.title = title;
-        this.author = author;
-        this.bookStatus = BookStatus.AVAILABLE;
-    }
 }

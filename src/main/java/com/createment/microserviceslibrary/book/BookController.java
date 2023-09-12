@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -21,12 +23,12 @@ public class BookController {
 
     @GetMapping
     public List<Book> displayAllBooks() {
-        bookrepository.findAll();
+        return bookrepository.findAll();
     }
 
     @GetMapping("/{bookId}")
     public Book displayBookById(@PathVariable Long bookId) {
-        bookrepository.findById(bookId);
+        return bookrepository.findById(bookId);
     }
 
     @GetMapping("/lending/{bookId}")

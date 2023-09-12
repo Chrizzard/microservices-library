@@ -21,7 +21,7 @@ public class Book {
 
     @Column(nullable = false)
     private BookStatus bookStatus;
-    private String customer_id;
+    private Long customer_id;
     private LocalDate return_date;
 
     public Book(String title, String author) {

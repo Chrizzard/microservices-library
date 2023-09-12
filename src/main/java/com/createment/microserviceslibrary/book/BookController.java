@@ -30,6 +30,11 @@ public class BookController {
         return bookrepository.findById(bookId);
     }
 
+    @PostMapping()
+    public Book addBook(@RequestBody Book book) {
+        return bookrepository.save(book);
+    }
+
     @PutMapping("/lending/{bookId}/")
     public void lendBookById(@PathVariable Long bookId, @RequestBody Customer customer) {
         bookservice.lendBook(bookId, customer);

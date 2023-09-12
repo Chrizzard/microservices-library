@@ -20,7 +20,7 @@ public class Book {
     private String author;
 
     @Column(nullable = false)
-    private BookStatus bookStatus;
+    private BookStatus bookStatus = BookStatus.AVAILABLE;
     private Long customer_id;
     private LocalDate return_date;
 

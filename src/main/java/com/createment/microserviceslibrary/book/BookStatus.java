@@ -1,4 +1,6 @@
 package com.createment.microserviceslibrary.book;
 
-public class test {
+public enum BookStatus {
+    AVAILABLE,
+    LENDED
 }

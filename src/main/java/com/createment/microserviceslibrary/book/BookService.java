@@ -57,7 +57,7 @@ public class BookService {
 
         Customer savedCustomer = webClient.post()
                 .uri("/customers")
-                .body(customer, Customer.class)
+                .body(Mono.just(customer), Customer.class)
                 .retrieve()
                 .toEntity(Customer.class)
                 .block().getBody();

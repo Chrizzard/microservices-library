@@ -38,10 +38,10 @@ public class BookService {
     }
 
     public Customer findCustomer(Customer customer) {
-        WebClient webClient = WebClient.create("localhost:8081");
+        WebClient webClient = WebClient.create("http://localhost:8081");
 
         List<Customer> customers = webClient.get()
-                .uri("/customers/")
+                .uri("/customers")
                 .retrieve()
                 .bodyToFlux(Customer.class)
                 .collectList()
@@ -53,10 +53,10 @@ public class BookService {
     }
 
     public Customer saveCustomer(Customer customer) {
-        WebClient webClient = WebClient.create("localhost:8081");
+        WebClient webClient = WebClient.create("http://localhost:8081");
 
         Customer savedCustomer = webClient.post()
-                .uri("/customers/")
+                .uri("/customers")
                 .body(customer, Customer.class)
                 .retrieve()
                 .toEntity(Customer.class)
